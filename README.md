@@ -18,6 +18,10 @@ which is exactly what we have mentioned before.
 $ python distinct_metric.py -n N_NGRAMS PREDICTION
 ```
 
+
 where `N_GRAMS` is the length of token sequence to count as unique within one sentence.
 `PREDICTION` is the prediction or response your model generates with one utterance (sentence) per line.
 
+
+# Dependencies
+It only depends on `numpy==1.13.1`.
