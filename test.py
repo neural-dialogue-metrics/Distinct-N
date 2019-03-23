@@ -1,25 +1,21 @@
 from unittest import TestCase
-import distinct_metric
+from distinct_n import distinct_n_sentence_level
 import unittest
 
 
 class TestDistinctN(unittest.TestCase):
     def test_unigram(self):
-        sentence = "the the the the the"
+        sentence = "the the the the the".split()
         self.assertAlmostEqual(
-            distinct_metric.compute_distinct_metric(sentence, 1), 0.2
+            distinct_n_sentence_level(sentence, 1), 0.2
         )
-        sentence = "the the the the cat"
+        sentence = "the the the the cat".split()
         self.assertAlmostEqual(
-            distinct_metric.compute_distinct_metric(sentence, 1), 0.4
+            distinct_n_sentence_level(sentence, 1), 0.4
         )
 
     def test_bigram(self):
-        sentence = "the cat sat on the"
+        sentence = "the cat sat on the".split()
         self.assertAlmostEqual(
-            distinct_metric.compute_distinct_metric(sentence, 2), 0.8
+            distinct_n_sentence_level(sentence, 2), 0.8
         )
-
-
-if __name__ == '__main__':
-    unittest.main()

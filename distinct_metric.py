@@ -1,20 +1,6 @@
-import utils
 import argparse
 import numpy as np
-
-
-def compute_distinct_metric(sentence, n):
-    """
-    Compute distinct-N for a single sentence.
-    :param sentence: string, words separated by space.
-    :param n: int, ngram.
-    :return: float, the metric value.
-    """
-    sentence = sentence.strip().split(" ")
-    if not sentence:
-        return 0.0  # Prevent a zero division
-    distinct_ngrams = set(utils.ngrams(sentence, n))
-    return len(distinct_ngrams) / len(sentence)
+import distinct_n
 
 
 def distinct_score(infile, n):
@@ -26,7 +12,7 @@ def distinct_score(infile, n):
     """
     with open(infile, 'r') as f:
         # Compute metric for each line of a file.
-        scores = [compute_distinct_metric(sentence, n) for sentence in f.readlines()]
+        scores = [distinct_n.distinct_n_sentence_level(sentence.split(), n) for sentence in f.readlines()]
     scores = np.asarray(scores)
     return np.mean(scores), 1.96 * np.std(scores) / len(scores), np.std(scores)
 

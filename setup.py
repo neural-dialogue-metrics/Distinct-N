@@ -1,8 +1,10 @@
 from setuptools import setup
 
+__version__ = '0.2.0'
+
 setup(
     name='Distinct-N',
-    version='0.1',
+    version=__version__,
     description='Distinct-N metric that measures degree of diversity of generated response',
     url='https://github.com/neural-dialogue-metrics/Distinct-N.git',
     author='cgsdfc',
@@ -13,7 +15,9 @@ setup(
         'computational linguistics',
         'machine translation',
     ],
+    packages=['distinct_n'],
     scripts=['distinct_metric.py'],
+    # py_modules=['distinct_metric'],
     classifiers=[
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: Apache-v2',
