@@ -1,6 +1,6 @@
 from setuptools import setup
 
-__version__ = '0.2.0'
+__version__ = '0.3.1'
 
 setup(
     name='Distinct-N',
@@ -16,15 +16,14 @@ setup(
         'machine translation',
     ],
     packages=['distinct_n'],
-    scripts=['distinct_metric.py'],
-    # py_modules=['distinct_metric'],
+    scripts=['bin/distinct_metric.py'],
     classifiers=[
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: Apache-v2',
         'Programming Language :: Python :: 3',
-        'Topic :: Text Processing :: Linguistic'
+        'Topic :: Text Processing :: Linguistic',
     ],
     license='LICENCE.txt',
     long_description=open('README.md').read(),
-    install_requires=['numpy==1.13.1'],
+    install_requires=[],
 )

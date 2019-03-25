@@ -24,7 +24,7 @@ where `N_GRAMS` is the length of token sequence to count as unique within one se
 
 
 # Dependencies
-It only depends on `numpy==1.13.1`.
+`python>=3.6.1`
 
 # References
 [1] A Diversity-Promoting Objective Function for Neural Conversation Models

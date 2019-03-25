@@ -1,1 +1,1 @@
-from distinct_n.distinct_n import *
+from distinct_n.metrics import *
