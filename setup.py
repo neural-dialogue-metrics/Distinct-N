@@ -1,9 +1,9 @@
 from setuptools import setup
 
-__version__ = '0.3.1'
+__version__ = '0.3.2'
 
 setup(
-    name='Distinct-N',
+    name='Distinct_N',
     version=__version__,
     description='Distinct-N metric that measures degree of diversity of generated response',
     url='https://github.com/neural-dialogue-metrics/Distinct-N.git',
