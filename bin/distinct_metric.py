@@ -1,14 +1,15 @@
 import argparse
-import distinct_n
 import logging
 
+from distinct_n import distinct_n_sentence_level
+from pathlib import Path
+from agenda.metric_helper import write_score
+
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        description='Compute average distinct-N on a hypothesis file',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-    )
+    parser = argparse.ArgumentParser()
     parser.add_argument('hypothesis', help="predicted text file, one example per line")
-    parser.add_argument('-n', type=int, default=2, help="n to use as in distinct-N")
+    parser.add_argument('-n', dest='n_range', type=int, nargs='+', help="n to use as in distinct-N")
+    parser.add_argument('--output_dir')
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO)
@@ -16,6 +17,12 @@ if __name__ == '__main__':
     with open(args.hypothesis) as f:
         hypothesis = [sentence.split() for sentence in f.readlines()]
 
-    for n in range(1, args.n + 1):
-        r = distinct_n.distinct_n_corpus_level(sentences=hypothesis, n=n)
-        print("Distinct-%d: %f" % (n, r))
+    output_dir = Path(args.output_dir)
+    for n in args.n_range:
+        name = 'distinct_n_%d' % n
+        write_score(
+            name=name,
+            output=output_dir.joinpath(name).with_suffix('.json'),
+            params={'n': n},
+            scores=[distinct_n_sentence_level(s, n) for s in hypothesis],
+        )
