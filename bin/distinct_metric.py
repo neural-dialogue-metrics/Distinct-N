@@ -5,6 +5,8 @@ from distinct_n import distinct_n_sentence_level
 from pathlib import Path
 from agenda.metric_helper import write_score
 
+NAME = 'distinct_n'
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('hypothesis', help="predicted text file, one example per line")
@@ -19,10 +21,9 @@ if __name__ == '__main__':
 
     output_dir = Path(args.output_dir)
     for n in args.n_range:
-        name = 'distinct_n_%d' % n
         write_score(
-            name=name,
-            output=output_dir.joinpath(name).with_suffix('.json'),
+            name=NAME,
+            output=output_dir.joinpath(f'{NAME}_{n}').with_suffix('.json'),
             params={'n': n},
             scores=[distinct_n_sentence_level(s, n) for s in hypothesis],
         )
